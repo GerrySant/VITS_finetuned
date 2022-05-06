@@ -15,8 +15,8 @@ def prediction():
     message = request.form['text']
 
     os.system(f'python ./TTS/TTS/bin/synthesize.py --text "{message}" \
-      --model_path ./VITS_finetuned/vits_BSC_Gerard_Sant/best_model.pth \
-      --config_path ./VITS_finetuned/vits_BSC_Gerard_Sant/config.json \
+      --model_path ./VITS_finetuned/vits/best_model.pth \
+      --config_path ./VITS_finetuned/vits/config.json \
       --speaker_id my_speaker \
       --out_path ./VITS_finetuned/vits_web/output.wav')
 
