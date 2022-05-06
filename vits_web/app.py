@@ -1,10 +1,10 @@
 import os
-import redis
 
 from flask import Flask, request, render_template, send_file
+from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
-cache = redis.Redis(host='redis', port=6379)
+run_with_ngrok(app)
 
 @app.route('/')
 def index():
@@ -20,7 +20,7 @@ def prediction():
       --speaker_id my_speaker \
       --out_path ./VITS_finetuned/vits_web/output.wav')
 
-    path_to_file = "./VITS_finetuned/vits_web/output.wav"
+    path_to_file = "output.wav"
 
     return send_file(
         path_to_file, 
@@ -29,4 +29,4 @@ def prediction():
         attachment_filename="output.wav")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
